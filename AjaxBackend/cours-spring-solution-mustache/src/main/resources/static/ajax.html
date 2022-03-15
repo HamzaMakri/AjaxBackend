@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Exemple de template</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
+
+
+</head>
+
+<body>
+
+
+  <h1> Partie Ajax </h1>
+
+    <div id="selectContainer">
+      <!-- Ici va s'inserer le template countriesTemplate  -->
+    </div>
+
+    <div id="tableContainer">
+      <!-- Ici va s'inserer le template citiesTemplate  -->
+    </div>
+
+<hr>
+<a href="/">Retour au menu</a>
+</body>
+
+<!-- ================================================== -->
+<!-- =============   TEMPLATES MUSTACHE   ============= -->
+<!-- ================================================== -->
+
+
+<script id="countriesTemplate" type="text/html">
+  <select id="countrySelector" onchange="countrySelected()" name="pays">
+      {{#countries}}
+      <option  value="{{{_links.cities.href}}}">{{name}}</option>
+      {{/countries}}
+  </select>
+</script>
+<script type="text/javascript" src="../js/country.js"></script>
+
+
+<script id="citiesTemplate" type="text/html">
+        <h2>Liste des pays</h2>
+        <table>
+          <tr><th>Nom</th><th>Population</th><th>Actions</th></tr>
+          {{#cities}}
+          <tr><td>{{name}}</td><td>{{population}}</td><td> <button onclick="deleteCity('{{{_links.self.href}}}')">Supprimer</button> </td></tr>
+          {{/cities}}
+        </table>
+</script>
+
+
+</html>
